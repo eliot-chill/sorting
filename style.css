@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+}
+
+body, html{
+    color: aliceblue;
+    background-color: rgb(77, 75, 75);
+    font-family: Montserrat, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sort {
+    margin-right: 25px;
+}
