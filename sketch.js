@@ -1,3 +1,5 @@
+let animate = false;
+
 var bubble = function (b) {
 
   b.setup = function () {
@@ -45,3 +47,8 @@ var selection = function (b) {
 var container1 = new p5(bubble, "bubble");
 var container2 = new p5(selection, "selection");
 //let myp5 = new p5(bubble);
+// document.getElementById('play').addEventListener('click', playSketch);
+
+// function playSketch(){
+//   console.log("Play")
+// }
