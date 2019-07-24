@@ -16,10 +16,6 @@ class BubbleSort{
             }
             this.collection.bars[this.collection.bars.length-this.i-1].setState("sorted");
           }
-          else {
-            noLoop();
-          }
-        this.i++;
-        
+        this.i++;        
     }
 }

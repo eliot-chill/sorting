@@ -1,5 +1,6 @@
 class Collection {
-    constructor(collectionWidth, collectionHeight, barWidth) {
+    constructor(currentSketch, collectionWidth, collectionHeight, barWidth) {
+        this.currentSketch = currentSketch
         this.collectionWidth = collectionWidth;
         this.collectionHeight = collectionHeight;
         this.barWidth = barWidth;
@@ -9,6 +10,7 @@ class Collection {
     generateBars() {
         for (let i = 0; i < this.collectionWidth / this.barWidth; i++) {
             this.bars.push(new Bar(
+                this.currentSketch,
                 i * this.barWidth,
                 this.collectionHeight - ((this.collectionHeight / this.collectionWidth) * i * this.barWidth),
                 (this.collectionHeight / this.collectionWidth) * i * this.barWidth,
