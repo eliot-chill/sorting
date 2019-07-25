@@ -1,6 +1,5 @@
 class Bar {
-    constructor(currentSketch, x, y, h, w, value) {
-        this.x = x;
+    constructor(currentSketch, y, h, w, value) {
         this.y = y
         this.h = h;
         this.w = w;
@@ -9,14 +8,14 @@ class Bar {
         this.currentSketch = currentSketch;
     }
 
-    show() {
+    show(x) {
         if (this.active == "sorted") {
             this.currentSketch.push();
             this.currentSketch.fill(76, 175, 80);
-            this.currentSketch.rect(this.x, this.y, this.w, this.h);
+            this.currentSketch.rect(x, this.y, this.w, this.h);
             this.currentSketch.pop();
         } else {
-            this.currentSketch.rect(this.x, this.y, this.w, this.h);
+            this.currentSketch.rect(x, this.y, this.w, this.h);
         }
     }
 

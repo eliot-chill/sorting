@@ -9,7 +9,7 @@ function baseCanvas(b, barWidth) {
   b.strokeWeight(.5);
   b.c = new Collection(b, b.width, b.height, barWidth);
   b.c.generateBars();
-  b.c.shuffleBars();  
+  b.c.shuffleBars();
 }
 
 let bubble = function (b) {
@@ -21,12 +21,14 @@ let bubble = function (b) {
 
   b.draw = function () {
     b.background(51);
-    b.c.bars.forEach(bar => {
-      bar.show();
-    });
-    if(animate){
-    b.bSort.sort();
-  }
+
+    for (let i = 0; i < b.c.bars.length; i++) {
+      b.c.bars[i].show(i * barWidth);
+    }
+
+    if (animate) {
+      b.bSort.sort();
+    }
   }
 }
 
@@ -39,11 +41,31 @@ let selection = function (b) {
 
   b.draw = function () {
     b.background(51);
-    b.c.bars.forEach(bar => {
-      bar.show();
-    });
-    if(animate){
-    b.sSort.sort();
+
+    for (let i = 0; i < b.c.bars.length; i++) {
+      b.c.bars[i].show(i * barWidth);
+    }
+
+    if (animate) {
+      b.sSort.sort();
+    }
+  }
+}
+
+let insertion = function (b) {
+
+  b.setup = function () {
+    baseCanvas(b, barWidth);
+    b.iSort = new InsertionSort(b.c);
+  }
+
+  b.draw = function () {
+    b.background(51);
+    for (let i = 0; i < b.c.bars.length; i++) {
+      b.c.bars[i].show(i * barWidth);
+    }
+    if (animate) {
+      b.iSort.sort();
     }
   }
 }
@@ -57,14 +79,15 @@ let merge = function (b) {
 
   b.draw = function () {
     b.background(51);
-    b.c.bars.forEach(bar => {
-      if(Array.isArray(bar)){
-        bar[0].show()}
-        else {bar.show();
-        }
-    });
-    if(animate){
-    b.mSort.sort();
+    for (let i = 0; i < b.c.bars.length; i++) {
+      if (Array.isArray(b.c.bars[i])) {
+        b.c.bars[i][0].show(i * barWidth);
+      } else {
+        b.c.bars[i].show(i * barWidth);
+      }
+    }
+    if (animate) {
+      b.mSort.sort();
     }
   }
 }
@@ -72,28 +95,30 @@ let merge = function (b) {
 
 let containers = [];
 
-containers.push(new p5(bubble, "bubble"))
-containers.push(new p5(selection, "selection"))
-containers.push(new p5(merge, "merge"))
+containers.push(new p5(bubble, "bubble"));
+containers.push(new p5(selection, "selection"));
+containers.push(new p5(insertion, "insertion"));
+containers.push(new p5(merge, "merge"));
 
 
 
-$('.play').click(function(){
+
+$('.play').click(function () {
   animate = !animate;
   var $this = $(this);
-  if(animate){
-      $this.text('Pause');         
+  if (animate) {
+    $this.text('Pause');
   } else {
-      $this.text('Play');
+    $this.text('Play');
   }
 });
 
 
-$('.reset').click(function(){
+$('.reset').click(function () {
   resetSketch();
 });
 
-function resetSketch(){
+function resetSketch() {
   animate = false;
   $('.play').text('Play');
   containers.forEach(container => {
@@ -101,7 +126,7 @@ function resetSketch(){
   });
 }
 
-$('.barWidth').change(function(){
+$('.barWidth').change(function () {
   barWidth = $(this).val();
   resetSketch();
 });
