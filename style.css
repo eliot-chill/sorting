@@ -4,7 +4,8 @@
   margin-right: 10px;
 }
 
-.barWidth {
+.barWidth, .frameRate {
+  margin-right: 10px;
   font-size: 2em;
   width: 5rem;
 }
@@ -29,6 +30,7 @@ body, html{
 .container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .sort {

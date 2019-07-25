@@ -1,10 +1,10 @@
 let animate = false;
 let barWidth = 10;
+let fps = 10;
 
-
-function baseCanvas(b, barWidth) {
+function baseCanvas(b, barWidth, fRate) {
   b.createCanvas(320, 240);
-  b.frameRate(10);
+  b.frameRate(fRate);
   b.fill(102);
   b.strokeWeight(.5);
   b.c = new Collection(b, b.width, b.height, barWidth);
@@ -15,7 +15,7 @@ function baseCanvas(b, barWidth) {
 let bubble = function (b) {
 
   b.setup = function () {
-    baseCanvas(b, barWidth);
+    baseCanvas(b, barWidth, fps);
     b.bSort = new BubbleSort(b.c);
   }
 
@@ -35,7 +35,7 @@ let bubble = function (b) {
 let selection = function (b) {
 
   b.setup = function () {
-    baseCanvas(b, barWidth);
+    baseCanvas(b, barWidth, fps);
     b.sSort = new SelectionSort(b.c);
   }
 
@@ -55,7 +55,7 @@ let selection = function (b) {
 let insertion = function (b) {
 
   b.setup = function () {
-    baseCanvas(b, barWidth);
+    baseCanvas(b, barWidth, fps);
     b.iSort = new InsertionSort(b.c);
   }
 
@@ -73,7 +73,7 @@ let insertion = function (b) {
 let merge = function (b) {
 
   b.setup = function () {
-    baseCanvas(b, barWidth);
+    baseCanvas(b, barWidth, fps);
     b.mSort = new MergeSort(b.c);
   }
 
@@ -99,7 +99,7 @@ containers.push(new p5(bubble, "bubble"));
 containers.push(new p5(selection, "selection"));
 containers.push(new p5(insertion, "insertion"));
 containers.push(new p5(merge, "merge"));
-
+2
 
 
 
@@ -130,3 +130,12 @@ $('.barWidth').change(function () {
   barWidth = $(this).val();
   resetSketch();
 });
+
+$('.frameRate').change(function() {
+  changeFPS($(this).val());
+  resetSketch();
+});
+
+function changeFPS(value){
+  fps = parseInt(value);
+}
