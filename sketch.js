@@ -48,10 +48,33 @@ let selection = function (b) {
   }
 }
 
+let merge = function (b) {
+
+  b.setup = function () {
+    baseCanvas(b, barWidth);
+    b.mSort = new MergeSort(b.c);
+  }
+
+  b.draw = function () {
+    b.background(51);
+    b.c.bars.forEach(bar => {
+      if(Array.isArray(bar)){
+        bar[0].show()}
+        else {bar.show();
+        }
+    });
+    if(animate){
+    b.mSort.sort();
+    }
+  }
+}
+
+
 let containers = [];
 
 containers.push(new p5(bubble, "bubble"))
 containers.push(new p5(selection, "selection"))
+containers.push(new p5(merge, "merge"))
 
 
 
