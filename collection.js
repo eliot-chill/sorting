@@ -8,13 +8,15 @@ class Collection {
     }
 
     generateBars() {
-        for (let i = 0; i < this.collectionWidth / this.barWidth; i++) {
+        for (let i = 0; i < this.currentSketch.round(this.collectionWidth / this.barWidth); i++) {
             this.bars.push(new Bar(
                 this.currentSketch,
                 i * this.barWidth,
                 this.collectionHeight - ((this.collectionHeight / this.collectionWidth) * i * this.barWidth),
                 (this.collectionHeight / this.collectionWidth) * i * this.barWidth,
-                this.barWidth, i + 1));
+                this.barWidth,
+                i + 1
+                ));
         }
     }
 

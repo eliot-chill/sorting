@@ -1,20 +1,26 @@
 let animate = false;
+let barWidth = 10;
 
-var bubble = function (b) {
+
+function baseCanvas(b, barWidth) {
+  b.createCanvas(320, 240);
+  b.frameRate(10);
+  b.fill(102);
+  b.strokeWeight(.5);
+  b.c = new Collection(b, b.width, b.height, barWidth);
+  b.c.generateBars();
+  b.c.shuffleBars();  
+}
+
+let bubble = function (b) {
 
   b.setup = function () {
-    b.createCanvas(320, 240);
-    b.frameRate(10);
-    b.fill(102);
-    b.c = new Collection(b, b.width, b.height, 10);
-    b.c.generateBars();
-    b.c.shuffleBars();
+    baseCanvas(b, barWidth);
     b.bSort = new BubbleSort(b.c);
   }
 
   b.draw = function () {
     b.background(51);
-   
     b.c.bars.forEach(bar => {
       bar.show();
     });
@@ -24,15 +30,10 @@ var bubble = function (b) {
   }
 }
 
-var selection = function (b) {
+let selection = function (b) {
 
   b.setup = function () {
-    b.createCanvas(320, 240);
-    b.frameRate(10);
-    b.fill(102);
-    b.c = new Collection(b, b.width, b.height, 10);
-    b.c.generateBars();
-    b.c.shuffleBars();
+    baseCanvas(b, barWidth);
     b.sSort = new SelectionSort(b.c);
   }
 
@@ -47,8 +48,11 @@ var selection = function (b) {
   }
 }
 
-var container1 = new p5(bubble, "bubble");
-var container2 = new p5(selection, "selection");
+let containers = [];
+
+containers.push(new p5(bubble, "bubble"))
+containers.push(new p5(selection, "selection"))
+
 
 
 $('.play').click(function(){
@@ -63,8 +67,18 @@ $('.play').click(function(){
 
 
 $('.reset').click(function(){
+  resetSketch();
+});
+
+function resetSketch(){
   animate = false;
   $('.play').text('Play');
-  container1.setup();
-  container2.setup();
+  containers.forEach(container => {
+    container.setup();
+  });
+}
+
+$('.barWidth').change(function(){
+  barWidth = $(this).val();
+  resetSketch();
 });

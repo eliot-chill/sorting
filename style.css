@@ -4,6 +4,10 @@
   margin-right: 10px;
 }
 
+.barWidth {
+  font-size: 2em;
+  width: 5rem;
+}
 .buttons {
     display: flex;
     justify-content: center;
