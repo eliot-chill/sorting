@@ -92,6 +92,24 @@ let merge = function (b) {
   }
 }
 
+let quick = function (b) {
+
+  b.setup = function () {
+    baseCanvas(b, barWidth, fps);
+    b.qSort = new QuickSort(b.c);
+  }
+
+  b.draw = function () {
+    b.background(51);
+    for (let i = 0; i < b.c.bars.length; i++) {
+      b.c.bars[i].show(i * barWidth);
+    }
+    if (animate) {
+      b.qSort.sort();
+    }
+  }
+}
+
 
 let containers = [];
 
@@ -99,7 +117,8 @@ containers.push(new p5(bubble, "bubble"));
 containers.push(new p5(selection, "selection"));
 containers.push(new p5(insertion, "insertion"));
 containers.push(new p5(merge, "merge"));
-2
+containers.push(new p5(quick, "quick"));
+
 
 
 

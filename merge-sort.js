@@ -6,7 +6,6 @@ class MergeSort{
     }
 
     sort(){
-        //TODO: add the sort 
         if(this.temporaryCollection.length > 1){
             const oddNumbered = this.temporaryCollection.length % 2 !==0;
             let temp = [];
