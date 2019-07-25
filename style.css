@@ -1,8 +1,18 @@
+.play, .reset{
+  font-size: 2em;
+  font-family: Montserrat, sans-serif;
+  margin-right: 10px;
+}
+
 .buttons {
     display: flex;
     justify-content: center;
+    position: fixed;
+    bottom: 50;
+    width: 100%;
 }
 h1 {
+  font-size: 2.5vw;
     text-align: center;
 }
 
