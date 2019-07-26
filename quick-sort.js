@@ -16,7 +16,7 @@ class QuickSort {
             this.low = this.stack[this.top--];
 
             let p = this.partition(this.collection.bars, this.low, this.high)
-
+            this.collection.bars[p].setState("sorted");
             if (p - 1 > this.low) {
                 this.stack[++this.top] = this.low;
                 this.stack[++this.top] = p - 1;
